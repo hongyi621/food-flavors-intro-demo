@@ -4,29 +4,32 @@
       <div class="contact-grid">
         <!-- Left: Info -->
         <div class="contact-info">
-          <div class="section-badge"><span>📬</span> Get in Touch</div>
-          <h2 class="section-title">Let's Talk<br/>Flavors</h2>
-          <p class="contact-desc">
-            Have a question, custom flavor request, or wholesale inquiry?
-            We'd love to hear from you. Fill out the form and our team will
-            get back to you within 24 hours.
-          </p>
+          <div class="section-badge"><span>📬</span> {{ t('contact.badge') }}</div>
+          <h2 class="section-title" v-html="t('contact.title').replace('\\n', '<br/>')"></h2>
+          <p class="contact-desc">{{ t('contact.desc') }}</p>
 
           <div class="info-cards">
-            <div class="info-card" v-for="info in contactInfo" :key="info.label">
-              <div class="info-icon">{{ info.icon }}</div>
+            <div class="info-card">
+              <div class="info-icon">📧</div>
               <div>
-                <div class="info-label">{{ info.label }}</div>
-                <div class="info-value">{{ info.value }}</div>
+                <div class="info-label">{{ t('contact.email') }}</div>
+                <div class="info-value">{{ t('contact.emailVal') }}</div>
               </div>
             </div>
-          </div>
-
-          <!-- Social -->
-          <div class="social-links">
-            <a v-for="social in socials" :key="social.name" :href="social.url" class="social-link" :title="social.name">
-              {{ social.icon }}
-            </a>
+            <div class="info-card">
+              <div class="info-icon">📞</div>
+              <div>
+                <div class="info-label">{{ t('contact.phone') }}</div>
+                <div class="info-value">{{ t('contact.phoneVal') }}</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">📍</div>
+              <div>
+                <div class="info-label">{{ t('contact.address') }}</div>
+                <div class="info-value">{{ t('contact.addressVal') }}</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -35,59 +38,41 @@
           <form class="contact-form" @submit.prevent="submitForm">
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">First Name</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  placeholder="John"
-                  v-model="form.firstName"
-                  required
-                />
+                <label class="form-label">{{ t('contact.firstName') }}</label>
+                <input type="text" class="form-input" v-model="form.firstName" required />
               </div>
               <div class="form-group">
-                <label class="form-label">Last Name</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  placeholder="Doe"
-                  v-model="form.lastName"
-                  required
-                />
+                <label class="form-label">{{ t('contact.lastName') }}</label>
+                <input type="text" class="form-input" v-model="form.lastName" required />
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label">Email</label>
-              <input
-                type="email"
-                class="form-input"
-                placeholder="john@example.com"
-                v-model="form.email"
-                required
-              />
+              <label class="form-label">{{ t('contact.emailLabel') }}</label>
+              <input type="email" class="form-input" v-model="form.email" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Subject</label>
+              <label class="form-label">{{ t('contact.subject') }}</label>
               <select class="form-input" v-model="form.subject">
-                <option value="" disabled>Select a topic</option>
-                <option value="general">General Inquiry</option>
-                <option value="wholesale">Wholesale / Bulk Orders</option>
-                <option value="custom">Custom Flavor Request</option>
-                <option value="support">Product Support</option>
+                <option value="" disabled>{{ t('contact.subjectPlaceholder') }}</option>
+                <option value="general">{{ t('contact.subjectOptions').general }}</option>
+                <option value="wholesale">{{ t('contact.subjectOptions').wholesale }}</option>
+                <option value="custom">{{ t('contact.subjectOptions').custom }}</option>
+                <option value="support">{{ t('contact.subjectOptions').support }}</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Message</label>
+              <label class="form-label">{{ t('contact.message') }}</label>
               <textarea
                 class="form-input form-textarea"
-                placeholder="Tell us about your flavor needs..."
+                :placeholder="t('contact.messagePlaceholder')"
                 rows="4"
                 v-model="form.message"
                 required
               ></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full" :disabled="submitted">
-              <span v-if="!submitted">Send Message</span>
-              <span v-else>✓ Message Sent!</span>
+              <span v-if="!submitted">{{ t('contact.submit') }}</span>
+              <span v-else>{{ t('contact.submitted') }}</span>
             </button>
           </form>
         </div>
@@ -98,6 +83,9 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { useI18n } from '../composables/useI18n'
+
+const { t } = useI18n()
 
 const form = reactive({
   firstName: '',
@@ -108,19 +96,6 @@ const form = reactive({
 })
 
 const submitted = ref(false)
-
-const contactInfo = [
-  { icon: '📧', label: 'Email', value: 'hello@flavorcraft.com' },
-  { icon: '📞', label: 'Phone', value: '+1 (555) 123-4567' },
-  { icon: '📍', label: 'Address', value: '123 Flavor Street, NY 10001' },
-]
-
-const socials = [
-  { name: 'Instagram', icon: '📷', url: '#' },
-  { name: 'Twitter', icon: '🐦', url: '#' },
-  { name: 'Facebook', icon: '📘', url: '#' },
-  { name: 'Pinterest', icon: '📌', url: '#' },
-]
 
 const submitForm = () => {
   submitted.value = true
@@ -138,7 +113,7 @@ const submitForm = () => {
 <style scoped>
 .contact {
   padding: var(--section-padding);
-  background: var(--light);
+  background: var(--white);
 }
 
 .contact-grid {
@@ -148,7 +123,6 @@ const submitForm = () => {
   align-items: start;
 }
 
-/* Info Side */
 .contact-desc {
   font-size: 1rem;
   color: var(--gray-500);
@@ -160,7 +134,6 @@ const submitForm = () => {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 32px;
 }
 
 .info-card {
@@ -168,7 +141,7 @@ const submitForm = () => {
   align-items: center;
   gap: 16px;
   padding: 16px 20px;
-  background: var(--white);
+  background: var(--light);
   border-radius: var(--radius-md);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: var(--transition);
@@ -206,33 +179,9 @@ const submitForm = () => {
   color: var(--dark);
 }
 
-.social-links {
-  display: flex;
-  gap: 12px;
-}
-
-.social-link {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--white);
-  border-radius: var(--radius-sm);
-  font-size: 1.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: var(--transition);
-}
-
-.social-link:hover {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
-}
-
-/* Form Side */
+/* Form */
 .contact-form-wrapper {
-  background: var(--white);
+  background: var(--light);
   border-radius: var(--radius-lg);
   padding: 40px;
   box-shadow: var(--shadow-lg);
@@ -263,7 +212,7 @@ const submitForm = () => {
   font-size: 0.92rem;
   font-family: var(--font-body);
   color: var(--dark);
-  background: var(--gray-100);
+  background: var(--white);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
   transition: var(--transition);
@@ -275,7 +224,6 @@ const submitForm = () => {
 }
 
 .form-input:focus {
-  background: var(--white);
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.1);
 }
@@ -304,7 +252,6 @@ select.form-input {
   box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
 }
 
-/* Responsive */
 @media (max-width: 968px) {
   .contact-grid {
     grid-template-columns: 1fr;

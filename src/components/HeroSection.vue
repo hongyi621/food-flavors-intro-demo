@@ -1,6 +1,6 @@
 <template>
   <section id="home" class="hero">
-    <!-- Decorative Elements -->
+    <!-- Decorative Background -->
     <div class="hero-bg">
       <div class="gradient-orb orb-1"></div>
       <div class="gradient-orb orb-2"></div>
@@ -11,41 +11,40 @@
     <div class="container hero-content">
       <div class="hero-text">
         <div class="section-badge">
-          <span>✨</span> Premium Quality Since 2020
+          <span>✨</span> {{ t('hero.badge') }}
         </div>
         <h1 class="hero-title">
-          Discover the Art of
-          <span class="title-gradient">Extraordinary Flavors</span>
+          {{ t('hero.titleLine1') }}
+          <span class="title-gradient">{{ t('hero.titleLine2') }}</span>
         </h1>
-        <p class="hero-description">
-          Elevate your culinary creations with our handcrafted, all-natural food flavors.
-          From classic vanilla to rich chocolate — pure taste, perfected.
-        </p>
+        <p class="hero-description">{{ t('hero.subtitle') }}</p>
+        <div class="hero-motto">
+          <span class="motto-icon">💡</span>
+          <span class="motto-text">{{ t('hero.motto') }}</span>
+        </div>
         <div class="hero-actions">
-          <a href="#products" class="btn btn-primary btn-lg">
-            <span>Explore Flavors</span>
+          <a href="#flavors" class="btn btn-primary btn-lg">
+            <span>{{ t('hero.cta1') }}</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#about" class="btn btn-ghost">
-            Learn More
-          </a>
+          <a href="#about" class="btn btn-ghost">{{ t('hero.cta2') }}</a>
         </div>
 
         <!-- Stats -->
         <div class="hero-stats">
           <div class="stat">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Unique Flavors</span>
+            <span class="stat-number">{{ t('hero.stat1Value') }}</span>
+            <span class="stat-label">{{ t('hero.stat1Label') }}</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat">
-            <span class="stat-number">10K+</span>
-            <span class="stat-label">Happy Customers</span>
+            <span class="stat-number">{{ t('hero.stat2Value') }}</span>
+            <span class="stat-label">{{ t('hero.stat2Label') }}</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat">
-            <span class="stat-number">100%</span>
-            <span class="stat-label">Natural Ingredients</span>
+            <span class="stat-number">{{ t('hero.stat3Value') }}</span>
+            <span class="stat-label">{{ t('hero.stat3Label') }}</span>
           </div>
         </div>
       </div>
@@ -53,20 +52,21 @@
       <div class="hero-visual">
         <div class="flavor-showcase">
           <div class="showcase-card card-1">
-            <div class="card-emoji">🍦</div>
-            <div class="card-label">Vanilla</div>
+            <div class="card-emoji">🍊</div>
+            <div class="card-label">{{ lang === 'en' ? 'Citrus' : '柑橘' }}</div>
           </div>
           <div class="showcase-card card-2">
-            <div class="card-emoji">🍫</div>
-            <div class="card-label">Chocolate</div>
+            <div class="card-emoji">🍓</div>
+            <div class="card-label">{{ lang === 'en' ? 'Berry' : '莓果' }}</div>
           </div>
           <div class="showcase-card card-3">
-            <div class="card-emoji">🍓</div>
-            <div class="card-label">Strawberry</div>
+            <div class="card-emoji">🌿</div>
+            <div class="card-label">{{ lang === 'en' ? 'Natural' : '天然' }}</div>
           </div>
           <div class="center-circle">
-            <span class="center-icon">🍊</span>
-            <span class="center-text">Craft<br/>Flavors</span>
+            <span class="center-icon">🧪</span>
+            <span class="center-text" v-if="lang === 'en'">Flavor<br/>Science</span>
+            <span class="center-text" v-else>香精<br/>科学</span>
           </div>
         </div>
       </div>
@@ -79,6 +79,11 @@
   </section>
 </template>
 
+<script setup>
+import { useI18n } from '../composables/useI18n'
+const { t, lang } = useI18n()
+</script>
+
 <style scoped>
 .hero {
   position: relative;
@@ -89,7 +94,6 @@
   padding-top: 80px;
 }
 
-/* Background */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -131,12 +135,11 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Content */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -147,16 +150,16 @@
 }
 
 .hero-text {
-  max-width: 580px;
+  max-width: 600px;
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
   font-weight: 700;
   line-height: 1.15;
   color: var(--dark);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .title-gradient {
@@ -168,10 +171,32 @@
 }
 
 .hero-description {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--gray-500);
   line-height: 1.8;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
+}
+
+.hero-motto {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.1), rgba(255, 107, 53, 0.08));
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(245, 166, 35, 0.15);
+  margin-bottom: 28px;
+}
+
+.motto-icon {
+  font-size: 1.1rem;
+}
+
+.motto-text {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  letter-spacing: 0.02em;
 }
 
 .hero-actions {
@@ -201,7 +226,6 @@
   background: var(--primary-light);
 }
 
-/* Stats */
 .hero-stats {
   display: flex;
   align-items: center;
@@ -252,7 +276,6 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   transition: var(--transition);
-  animation: float 6s ease-in-out infinite;
 }
 
 .showcase-card:hover {
@@ -274,19 +297,19 @@
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  animation-delay: 0s;
+  animation: float1 6s ease-in-out infinite;
 }
 
 .card-2 {
   bottom: 30px;
   left: 10px;
-  animation-delay: -2s;
+  animation: float 6s ease-in-out infinite -2s;
 }
 
 .card-3 {
   bottom: 30px;
   right: 10px;
-  animation-delay: -4s;
+  animation: float 6s ease-in-out infinite -4s;
 }
 
 .center-circle {
@@ -324,16 +347,11 @@
   50% { transform: translateY(-12px); }
 }
 
-.card-1 {
-  animation: float1 6s ease-in-out infinite;
-}
-
 @keyframes float1 {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(-12px); }
 }
 
-/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 32px;
@@ -367,7 +385,6 @@
   100% { top: 100%; }
 }
 
-/* Responsive */
 @media (max-width: 968px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -376,6 +393,10 @@
 
   .hero-text {
     max-width: 100%;
+  }
+
+  .hero-motto {
+    justify-content: center;
   }
 
   .hero-actions {

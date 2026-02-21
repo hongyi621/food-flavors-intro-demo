@@ -2,55 +2,53 @@
   <section id="about" class="about">
     <div class="container">
       <div class="about-grid">
-        <!-- Left: Visual -->
+        <!-- Left: R&D Process Timeline -->
         <div class="about-visual">
-          <div class="visual-card main-card">
-            <div class="visual-icon">🌱</div>
-            <h4>Farm to Flavor</h4>
-            <p>We source ingredients directly from sustainable farms worldwide</p>
-          </div>
-          <div class="visual-card accent-card card-float-1">
-            <div class="visual-icon">🔬</div>
-            <span>Lab Tested</span>
-          </div>
-          <div class="visual-card accent-card card-float-2">
-            <div class="visual-icon">🏆</div>
-            <span>Award Winning</span>
-          </div>
-          <div class="experience-badge">
-            <span class="exp-number">5+</span>
-            <span class="exp-label">Years of<br/>Excellence</span>
+          <div class="timeline">
+            <div
+              v-for="(step, index) in t('about.steps')"
+              :key="index"
+              class="timeline-step"
+            >
+              <div class="step-marker">
+                <span class="step-num">{{ step.num }}</span>
+                <div class="step-line" v-if="index < t('about.steps').length - 1"></div>
+              </div>
+              <div class="step-content">
+                <h4 class="step-title">{{ step.title }}</h4>
+                <p class="step-desc">{{ step.desc }}</p>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Right: Content -->
         <div class="about-content">
-          <div class="section-badge"><span>🏠</span> Our Story</div>
-          <h2 class="section-title">Crafted with Passion,<br/>Delivered with Care</h2>
-          <p class="about-text">
-            At FlavorCraft, we believe that great food starts with extraordinary flavors.
-            Founded in 2020, our mission is to bring professional-grade, all-natural food flavors
-            to home kitchens and bakeries everywhere.
-          </p>
-          <p class="about-text">
-            Every flavor in our collection is developed by our team of food scientists and
-            flavor artists, using only the purest natural extracts and ingredients — no
-            artificial colors, no preservatives, no compromises.
-          </p>
+          <div class="section-badge"><span>🔬</span> {{ t('about.badge') }}</div>
+          <h2 class="section-title" v-html="t('about.title').replace('\\n', '<br/>')"></h2>
+          <p class="about-text">{{ t('about.description') }}</p>
+          <p class="about-text">{{ t('about.description2') }}</p>
 
-          <!-- Features -->
-          <div class="features-list">
-            <div class="feature" v-for="feature in features" :key="feature.title">
-              <div class="feature-icon">{{ feature.icon }}</div>
-              <div>
-                <h4 class="feature-title">{{ feature.title }}</h4>
-                <p class="feature-desc">{{ feature.desc }}</p>
-              </div>
+          <div class="about-highlights">
+            <div class="highlight-card">
+              <div class="highlight-icon">🎯</div>
+              <div class="highlight-number">5</div>
+              <div class="highlight-label">{{ lang === 'en' ? 'Step R&D Process' : '步研发流程' }}</div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">🤝</div>
+              <div class="highlight-number">1:1</div>
+              <div class="highlight-label">{{ lang === 'en' ? 'Client Collaboration' : '客户协作' }}</div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon">✅</div>
+              <div class="highlight-number">100%</div>
+              <div class="highlight-label">{{ lang === 'en' ? 'Quality Assured' : '质量保证' }}</div>
             </div>
           </div>
 
-          <a href="#contact" class="btn btn-primary" style="margin-top: 12px">
-            Get in Touch
+          <a href="#flavors" class="btn btn-primary" style="margin-top: 12px;">
+            {{ lang === 'en' ? 'View Our Flavors' : '查看产品系列' }}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -60,23 +58,8 @@
 </template>
 
 <script setup>
-const features = [
-  {
-    icon: '🍃',
-    title: '100% Natural',
-    desc: 'No artificial additives, colors, or preservatives in any of our products.',
-  },
-  {
-    icon: '🧪',
-    title: 'Precision Crafted',
-    desc: 'Each batch is tested for consistency, potency, and flavor accuracy.',
-  },
-  {
-    icon: '📦',
-    title: 'Worldwide Shipping',
-    desc: 'We deliver freshness to your doorstep, anywhere in the world.',
-  },
-]
+import { useI18n } from '../composables/useI18n'
+const { t, lang } = useI18n()
 </script>
 
 <style scoped>
@@ -87,120 +70,9 @@ const features = [
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 80px;
   align-items: center;
-}
-
-/* Visual Side */
-.about-visual {
-  position: relative;
-  min-height: 480px;
-}
-
-.visual-card {
-  border-radius: var(--radius-lg);
-  background: var(--white);
-  box-shadow: var(--shadow-lg);
-}
-
-.main-card {
-  width: 320px;
-  padding: 40px 32px;
-  text-align: center;
-  background: linear-gradient(145deg, var(--primary-light), var(--white));
-  border: 1px solid rgba(245, 166, 35, 0.1);
-}
-
-.main-card .visual-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
-}
-
-.main-card h4 {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 8px;
-}
-
-.main-card p {
-  font-size: 0.9rem;
-  color: var(--gray-500);
-  line-height: 1.6;
-}
-
-.accent-card {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 22px;
-  background: var(--white);
-}
-
-.accent-card .visual-icon {
-  font-size: 1.6rem;
-}
-
-.accent-card span {
-  font-weight: 600;
-  font-size: 0.88rem;
-  color: var(--dark);
-}
-
-.card-float-1 {
-  top: 0;
-  right: 0;
-  animation: floatSlow 8s ease-in-out infinite;
-}
-
-.card-float-2 {
-  bottom: 40px;
-  right: 20px;
-  animation: floatSlow 8s ease-in-out infinite 2s;
-}
-
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.experience-badge {
-  position: absolute;
-  bottom: 0;
-  left: 30px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-glow);
-}
-
-.exp-number {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1;
-}
-
-.exp-label {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.85);
-  text-align: center;
-  line-height: 1.3;
-  font-weight: 500;
-}
-
-/* Content Side */
-.about-content {
-  max-width: 520px;
 }
 
 .about-text {
@@ -210,43 +82,107 @@ const features = [
   margin-bottom: 16px;
 }
 
-.features-list {
+/* Timeline */
+.timeline {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 32px;
-  margin-bottom: 20px;
+  gap: 0;
 }
 
-.feature {
+.timeline-step {
   display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  gap: 20px;
 }
 
-.feature-icon {
-  font-size: 1.6rem;
+.step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-shrink: 0;
+}
+
+.step-num {
   width: 48px;
   height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--primary-light);
-  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.3);
 }
 
-.feature-title {
-  font-size: 0.95rem;
+.step-line {
+  width: 2px;
+  flex: 1;
+  min-height: 30px;
+  background: linear-gradient(180deg, var(--primary), var(--primary-light));
+  border-radius: 2px;
+}
+
+.step-content {
+  padding-bottom: 32px;
+  padding-top: 8px;
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.step-desc {
+  font-size: 0.88rem;
+  color: var(--gray-500);
+  line-height: 1.6;
+}
+
+/* Highlights */
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+.highlight-card {
+  text-align: center;
+  padding: 20px 12px;
+  background: var(--primary-light);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.highlight-icon {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.highlight-number {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
   margin-bottom: 4px;
 }
 
-.feature-desc {
-  font-size: 0.85rem;
+.highlight-label {
+  font-size: 0.78rem;
   color: var(--gray-500);
-  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* Responsive */
@@ -256,14 +192,14 @@ const features = [
     gap: 48px;
   }
 
-  .about-visual {
-    display: flex;
-    justify-content: center;
-    min-height: auto;
+  .about-grid > .about-visual {
+    order: 2;
   }
+}
 
-  .accent-card, .experience-badge {
-    display: none;
+@media (max-width: 480px) {
+  .about-highlights {
+    grid-template-columns: 1fr;
   }
 }
 </style>

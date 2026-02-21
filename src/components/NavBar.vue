@@ -2,8 +2,11 @@
   <nav :class="['navbar', { scrolled: isScrolled }]">
     <div class="container nav-container">
       <a href="#" class="logo">
-        <span class="logo-icon">🍊</span>
-        <span class="logo-text">Flavor<span class="logo-highlight">Craft</span></span>
+        <span class="logo-icon">🧪</span>
+        <span class="logo-text">
+          <template v-if="lang === 'en'">Epochal<span class="logo-highlight">Aromatic</span></template>
+          <template v-else>时代<span class="logo-highlight">芳香</span></template>
+        </span>
       </a>
 
       <button class="mobile-toggle" @click="menuOpen = !menuOpen" :class="{ active: menuOpen }">
@@ -13,13 +16,21 @@
       </button>
 
       <ul :class="['nav-links', { open: menuOpen }]">
-        <li><a href="#home" @click="menuOpen = false">Home</a></li>
-        <li><a href="#products" @click="menuOpen = false">Products</a></li>
-        <li><a href="#about" @click="menuOpen = false">About</a></li>
-        <li><a href="#contact" @click="menuOpen = false">Contact</a></li>
+        <li><a href="#home" @click="menuOpen = false">{{ t('nav.home') }}</a></li>
+        <li><a href="#about" @click="menuOpen = false">{{ t('nav.about') }}</a></li>
+        <li><a href="#flavors" @click="menuOpen = false">{{ t('nav.flavors') }}</a></li>
+        <li><a href="#applications" @click="menuOpen = false">{{ t('nav.applications') }}</a></li>
+        <li><a href="#why-us" @click="menuOpen = false">{{ t('nav.whyUs') }}</a></li>
+        <li><a href="#contact" @click="menuOpen = false">{{ t('nav.contact') }}</a></li>
         <li>
-          <a href="#products" class="btn btn-primary nav-cta" @click="menuOpen = false">
-            Shop Now
+          <button class="lang-toggle" @click="toggleLang" :title="lang === 'en' ? 'Switch to 中文' : 'Switch to English'">
+            <span class="lang-globe">🌐</span>
+            <span class="lang-label">{{ lang === 'en' ? '中文' : 'EN' }}</span>
+          </button>
+        </li>
+        <li>
+          <a href="#contact" class="btn btn-primary nav-cta" @click="menuOpen = false">
+            {{ t('nav.cta') }}
           </a>
         </li>
       </ul>
@@ -29,6 +40,9 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useI18n } from '../composables/useI18n'
+
+const { t, lang, toggleLang } = useI18n()
 
 const isScrolled = ref(false)
 const menuOpen = ref(false)
@@ -70,13 +84,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   z-index: 10;
 }
 
 .logo-icon {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .logo-text {
@@ -93,11 +107,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 28px;
 }
 
 .nav-links a {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--gray-700);
   transition: var(--transition);
@@ -126,7 +140,39 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 .nav-cta {
   padding: 10px 24px !important;
-  font-size: 0.85rem !important;
+  font-size: 0.82rem !important;
+}
+
+/* Language Toggle */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: var(--primary-light);
+  border: 2px solid rgba(245, 166, 35, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lang-toggle:hover {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--white);
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+}
+
+.lang-globe {
+  font-size: 1rem;
+}
+
+.lang-label {
+  letter-spacing: 0.03em;
 }
 
 /* Mobile Toggle */
@@ -160,7 +206,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .mobile-toggle {
     display: flex;
   }
@@ -173,7 +219,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     bottom: 0;
     flex-direction: column;
     justify-content: center;
-    gap: 32px;
+    gap: 28px;
     background: var(--white);
     opacity: 0;
     pointer-events: none;
@@ -186,7 +232,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   }
 
   .nav-links a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 </style>

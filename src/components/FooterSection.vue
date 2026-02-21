@@ -5,46 +5,46 @@
         <!-- Brand -->
         <div class="footer-brand">
           <a href="#" class="footer-logo">
-            <span class="logo-icon">🍊</span>
-            <span class="logo-text">Flavor<span class="logo-highlight">Craft</span></span>
+            <span class="logo-icon">🧪</span>
+            <span class="logo-text">
+              <template v-if="lang === 'en'">Epochal<span class="logo-highlight">Aromatic</span></template>
+              <template v-else>时代<span class="logo-highlight">芳香</span></template>
+            </span>
           </a>
-          <p class="footer-desc">
-            Premium all-natural food flavors crafted for culinary excellence.
-            Elevate every recipe.
-          </p>
+          <p class="footer-desc">{{ t('footer.desc') }}</p>
         </div>
 
         <!-- Quick Links -->
         <div class="footer-links">
-          <h4 class="footer-heading">Quick Links</h4>
+          <h4 class="footer-heading">{{ t('footer.quickLinks') }}</h4>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">{{ t('nav.home') }}</a></li>
+            <li><a href="#about">{{ t('nav.about') }}</a></li>
+            <li><a href="#flavors">{{ t('nav.flavors') }}</a></li>
+            <li><a href="#contact">{{ t('nav.contact') }}</a></li>
           </ul>
         </div>
 
         <!-- Products -->
         <div class="footer-links">
-          <h4 class="footer-heading">Products</h4>
+          <h4 class="footer-heading">{{ t('footer.products') }}</h4>
           <ul>
-            <li><a href="#products">Classic Flavors</a></li>
-            <li><a href="#products">Premium Collection</a></li>
-            <li><a href="#products">New Arrivals</a></li>
-            <li><a href="#products">Gift Sets</a></li>
+            <li><a href="#flavors">{{ t('footer.classicFlavors') }}</a></li>
+            <li><a href="#flavors">{{ t('footer.premiumCollection') }}</a></li>
+            <li><a href="#flavors">{{ t('footer.newArrivals') }}</a></li>
+            <li><a href="#flavors">{{ t('footer.customDev') }}</a></li>
           </ul>
         </div>
 
         <!-- Newsletter -->
         <div class="footer-newsletter">
-          <h4 class="footer-heading">Stay Updated</h4>
-          <p class="newsletter-desc">Subscribe for new flavors, recipes, and exclusive offers.</p>
+          <h4 class="footer-heading">{{ t('footer.stayUpdated') }}</h4>
+          <p class="newsletter-desc">{{ t('footer.newsletterDesc') }}</p>
           <form class="newsletter-form" @submit.prevent="subscribe">
             <input
               type="email"
               class="newsletter-input"
-              placeholder="Your email"
+              :placeholder="t('footer.emailPlaceholder')"
               v-model="email"
               required
             />
@@ -55,10 +55,10 @@
 
       <!-- Bottom -->
       <div class="footer-bottom">
-        <p class="copyright">© {{ currentYear }} FlavorCraft. All rights reserved.</p>
+        <p class="copyright">{{ t('footer.copyright').replace('{year}', currentYear) }}</p>
         <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#">{{ t('footer.privacy') }}</a>
+          <a href="#">{{ t('footer.terms') }}</a>
         </div>
       </div>
     </div>
@@ -67,12 +67,16 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from '../composables/useI18n'
 
+const { t, lang } = useI18n()
 const email = ref('')
 const currentYear = new Date().getFullYear()
 
 const subscribe = () => {
-  alert(`Thanks for subscribing with ${email.value}! 🎉`)
+  alert(lang.value === 'en'
+    ? `Thanks for subscribing with ${email.value}! 🎉`
+    : `感谢您使用 ${email.value} 订阅！🎉`)
   email.value = ''
 }
 </script>
@@ -92,7 +96,6 @@ const subscribe = () => {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Brand */
 .footer-logo {
   display: flex;
   align-items: center;
@@ -123,7 +126,6 @@ const subscribe = () => {
   line-height: 1.7;
 }
 
-/* Links */
 .footer-heading {
   font-family: var(--font-display);
   font-size: 1rem;
@@ -149,7 +151,6 @@ const subscribe = () => {
   display: inline-block;
 }
 
-/* Newsletter */
 .newsletter-desc {
   font-size: 0.88rem;
   margin-bottom: 16px;
@@ -194,7 +195,6 @@ const subscribe = () => {
   opacity: 0.9;
 }
 
-/* Bottom */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -220,7 +220,6 @@ const subscribe = () => {
   color: var(--primary);
 }
 
-/* Responsive */
 @media (max-width: 968px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
