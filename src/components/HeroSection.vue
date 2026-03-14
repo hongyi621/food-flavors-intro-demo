@@ -1,31 +1,40 @@
 <template>
   <section id="home" class="hero">
-    <!-- Decorative Background -->
+    <!-- PPT-style yellow/orange checkerboard background -->
     <div class="hero-bg">
-      <div class="gradient-orb orb-1"></div>
-      <div class="gradient-orb orb-2"></div>
-      <div class="gradient-orb orb-3"></div>
-      <div class="grid-pattern"></div>
+      <div class="checker-grid">
+        <div v-for="i in 20" :key="i" class="checker-cell" :class="{ filled: [1,3,6,8,11,13,16,18].includes(i) }"></div>
+      </div>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Glass bubbles -->
+    <div class="glass-bubbles">
+      <div class="bubble" style="width:120px;height:120px;top:15%;right:8%;opacity:0.3"></div>
+      <div class="bubble" style="width:60px;height:60px;top:60%;right:15%;opacity:0.25"></div>
+      <div class="bubble" style="width:80px;height:80px;bottom:20%;left:5%;opacity:0.2"></div>
     </div>
 
     <div class="container hero-content">
       <div class="hero-text">
-        <div class="section-badge">
-          <span>✨</span> {{ t('hero.badge') }}
+        <div class="hero-badge-line">
+          <span class="hero-badge">{{ t('hero.badge') }}</span>
         </div>
         <h1 class="hero-title">
           {{ t('hero.titleLine1') }}
-          <span class="title-gradient">{{ t('hero.titleLine2') }}</span>
+          <span class="title-accent">{{ t('hero.titleLine2') }}</span>
         </h1>
         <p class="hero-description">{{ t('hero.subtitle') }}</p>
+
         <div class="hero-motto">
-          <span class="motto-icon">💡</span>
+          <div class="motto-line"></div>
           <span class="motto-text">{{ t('hero.motto') }}</span>
         </div>
+
         <div class="hero-actions">
           <a href="#flavors" class="btn btn-primary btn-lg">
             <span>{{ t('hero.cta1') }}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#about" class="btn btn-ghost">{{ t('hero.cta2') }}</a>
         </div>
@@ -51,6 +60,7 @@
 
       <div class="hero-visual">
         <div class="flavor-showcase">
+          <div class="showcase-ring"></div>
           <div class="showcase-card card-1">
             <div class="card-emoji">🍊</div>
             <div class="card-label">{{ lang === 'en' ? 'Citrus' : '柑橘' }}</div>
@@ -60,13 +70,18 @@
             <div class="card-label">{{ lang === 'en' ? 'Berry' : '莓果' }}</div>
           </div>
           <div class="showcase-card card-3">
-            <div class="card-emoji">🌿</div>
-            <div class="card-label">{{ lang === 'en' ? 'Natural' : '天然' }}</div>
+            <div class="card-emoji">🍵</div>
+            <div class="card-label">{{ lang === 'en' ? 'Tea' : '茶类' }}</div>
           </div>
           <div class="center-circle">
-            <span class="center-icon">🧪</span>
-            <span class="center-text" v-if="lang === 'en'">Flavor<br/>Science</span>
-            <span class="center-text" v-else>香精<br/>科学</span>
+            <span class="center-icon">
+              <svg width="36" height="36" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.2)" />
+                <path d="M50 20 C65 35, 75 50, 50 80 C25 50, 35 35, 50 20Z" fill="rgba(255,255,255,0.9)" />
+              </svg>
+            </span>
+            <span class="center-text" v-if="lang === 'en'">EPOCHAL</span>
+            <span class="center-text" v-else>珀臣</span>
           </div>
         </div>
       </div>
@@ -92,52 +107,39 @@ const { t, lang } = useI18n()
   align-items: center;
   overflow: hidden;
   padding-top: 80px;
+  background: var(--cream);
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
-.gradient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-}
-
-.orb-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--primary-light), transparent);
-  top: -200px;
-  right: -100px;
-}
-
-.orb-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255, 107, 53, 0.2), transparent);
-  bottom: -100px;
-  left: -100px;
-}
-
-.orb-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent);
-  top: 50%;
-  left: 40%;
-}
-
-.grid-pattern {
+/* PPT-style checkerboard */
+.checker-grid {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  opacity: 0.08;
+}
+
+.checker-cell.filled {
+  background: var(--brand-orange);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 249, 240, 0.95) 0%,
+    rgba(255, 249, 240, 0.85) 50%,
+    rgba(255, 243, 224, 0.75) 100%
+  );
 }
 
 .hero-content {
@@ -153,49 +155,63 @@ const { t, lang } = useI18n()
   max-width: 600px;
 }
 
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--dark);
-  margin-bottom: 20px;
+.hero-badge-line {
+  margin-bottom: 24px;
 }
 
-.title-gradient {
+.hero-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
+  color: var(--white);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+.title-accent {
   display: block;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--brand-orange);
 }
 
 .hero-description {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--gray-500);
-  line-height: 1.8;
-  margin-bottom: 20px;
+  line-height: 1.85;
+  margin-bottom: 24px;
 }
 
 .hero-motto {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, rgba(245, 166, 35, 0.1), rgba(255, 107, 53, 0.08));
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(245, 166, 35, 0.15);
-  margin-bottom: 28px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
-.motto-icon {
-  font-size: 1.1rem;
+.motto-line {
+  width: 40px;
+  height: 2px;
+  background: var(--brand-orange);
+  flex-shrink: 0;
 }
 
 .motto-text {
-  font-size: 0.92rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary-dark);
+  font-style: italic;
+  color: var(--brand-gold);
   letter-spacing: 0.02em;
 }
 
@@ -217,13 +233,15 @@ const { t, lang } = useI18n()
   font-weight: 600;
   color: var(--gray-700);
   background: transparent;
+  border: 1.5px solid var(--gray-300);
   border-radius: var(--radius-full);
   transition: var(--transition);
 }
 
 .btn-ghost:hover {
-  color: var(--primary-dark);
-  background: var(--primary-light);
+  color: var(--brand-orange);
+  border-color: var(--brand-orange);
+  background: rgba(232, 148, 26, 0.05);
 }
 
 .hero-stats {
@@ -235,9 +253,9 @@ const { t, lang } = useI18n()
 .stat-number {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--brand-orange);
 }
 
 .stat-label {
@@ -265,32 +283,52 @@ const { t, lang } = useI18n()
   height: 420px;
 }
 
+.showcase-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1px dashed rgba(232, 148, 26, 0.25);
+  animation: spin 40s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 .showcase-card {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 24px 28px;
-  background: var(--white);
+  padding: 22px 26px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   transition: var(--transition);
 }
 
 .showcase-card:hover {
   transform: scale(1.08);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
 }
 
 .card-emoji {
-  font-size: 3rem;
+  font-size: 2.6rem;
 }
 
 .card-label {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--dark);
+  letter-spacing: 0.02em;
 }
 
 .card-1 {
@@ -317,29 +355,30 @@ const { t, lang } = useI18n()
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(145deg, var(--brand-orange), var(--brand-yellow));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 8px 40px rgba(232, 148, 26, 0.35);
 }
 
 .center-icon {
-  font-size: 2rem;
+  display: flex;
 }
 
 .center-text {
   color: var(--white);
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 @keyframes float {
@@ -375,7 +414,7 @@ const { t, lang } = useI18n()
   left: 0;
   width: 100%;
   height: 50%;
-  background: var(--primary);
+  background: var(--brand-orange);
   border-radius: 2px;
   animation: scrollDown 2s ease-in-out infinite;
 }

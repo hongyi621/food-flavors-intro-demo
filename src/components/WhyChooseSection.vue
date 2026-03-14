@@ -1,11 +1,18 @@
 <template>
   <section id="why-us" class="why-us">
-    <div class="container">
+    <!-- PPT slide 5: Olive/golden theme with glass bubbles -->
+    <div class="glass-bubbles">
+      <div class="bubble" style="width:130px;height:130px;top:8%;left:6%;opacity:0.12"></div>
+      <div class="bubble" style="width:70px;height:70px;bottom:30%;right:4%;opacity:0.1"></div>
+      <div class="bubble" style="width:100px;height:100px;bottom:8%;right:12%;opacity:0.08"></div>
+    </div>
+
+    <div class="container why-inner">
       <!-- Why Choose Us -->
       <div class="why-header">
-        <div class="section-badge"><span>⭐</span> {{ t('whyUs.badge') }}</div>
-        <h2 class="section-title">{{ t('whyUs.title') }}</h2>
-        <p class="section-subtitle">{{ t('whyUs.subtitle') }}</p>
+        <div class="section-badge why-badge">{{ t('whyUs.badge') }}</div>
+        <h2 class="section-title why-title">{{ t('whyUs.title') }}</h2>
+        <p class="section-subtitle why-sub">{{ t('whyUs.subtitle') }}</p>
       </div>
 
       <div class="reasons-grid">
@@ -14,28 +21,35 @@
           :key="index"
           class="reason-card"
         >
-          <div class="reason-icon">{{ reason.icon }}</div>
+          <div class="reason-icon-wrap">
+            <span class="reason-icon">{{ reason.icon }}</span>
+          </div>
           <h4 class="reason-title">{{ reason.title }}</h4>
           <p class="reason-desc">{{ reason.desc }}</p>
         </div>
       </div>
 
-      <!-- Health & Natural Section -->
+      <!-- Health & Natural Section (PPT slide 10: blue theme) -->
       <div class="health-section">
         <div class="health-content">
-          <div class="section-badge health-badge"><span>🌿</span> {{ t('whyUs.healthBadge') }}</div>
+          <div class="section-badge health-badge">{{ t('whyUs.healthBadge') }}</div>
           <h3 class="health-title">{{ t('whyUs.healthTitle') }}</h3>
           <p class="health-desc">{{ t('whyUs.healthDesc') }}</p>
           <ul class="health-points">
             <li v-for="(point, i) in t('whyUs.healthPoints')" :key="i">
-              <span class="point-icon">✓</span>
+              <span class="point-icon">&#10003;</span>
               <span>{{ point }}</span>
             </li>
           </ul>
         </div>
         <div class="health-visual">
           <div class="vision-card">
-            <div class="vision-icon">🔭</div>
+            <div class="vision-icon-wrap">
+              <svg width="48" height="48" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="rgba(107,140,166,0.15)" />
+                <path d="M50 25 C60 35, 70 45, 50 75 C30 45, 40 35, 50 25Z" fill="#6B8CA6" />
+              </svg>
+            </div>
             <h4 class="vision-title">{{ t('whyUs.visionTitle') }}</h4>
             <p class="vision-desc">{{ t('whyUs.visionDesc') }}</p>
           </div>
@@ -53,7 +67,14 @@ const { t } = useI18n()
 <style scoped>
 .why-us {
   padding: var(--section-padding);
-  background: var(--light);
+  background: linear-gradient(165deg, #F5F0E0 0%, #F8F4EA 40%, #FDFBF5 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .why-header {
@@ -61,8 +82,18 @@ const { t } = useI18n()
   margin-bottom: 56px;
 }
 
-.why-header .section-subtitle {
+.why-badge {
+  background: rgba(139, 125, 60, 0.1) !important;
+  color: #6B5E2A !important;
+}
+
+.why-title {
+  color: #6B5E2A;
+}
+
+.why-sub {
   margin: 0 auto;
+  color: var(--gray-700);
 }
 
 /* Reasons Grid */
@@ -74,22 +105,34 @@ const { t } = useI18n()
 }
 
 .reason-card {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
   padding: 32px 28px;
   text-align: center;
   transition: var(--transition);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(139, 125, 60, 0.06);
 }
 
 .reason-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 12px 40px rgba(139, 125, 60, 0.12);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.reason-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(139, 125, 60, 0.1), rgba(197, 186, 110, 0.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
 }
 
 .reason-icon {
-  font-size: 2.4rem;
-  margin-bottom: 16px;
+  font-size: 1.8rem;
 }
 
 .reason-title {
@@ -106,35 +149,34 @@ const { t } = useI18n()
   line-height: 1.6;
 }
 
-/* Health Section */
+/* Health Section (PPT slide 10: blue-ish) */
 .health-section {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 60px;
   align-items: center;
-  background: var(--white);
+  background: linear-gradient(145deg, #E0EBF2, #EDF3F8);
   border-radius: var(--radius-xl);
   padding: 56px 48px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(107, 140, 166, 0.1);
 }
 
 .health-badge {
-  background: rgba(76, 175, 80, 0.1) !important;
-  color: #2e7d32 !important;
+  background: rgba(107, 140, 166, 0.12) !important;
+  color: #4A7291 !important;
 }
 
 .health-title {
   font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--dark);
+  color: #3A5F78;
   margin-bottom: 16px;
 }
 
 .health-desc {
   font-size: 0.95rem;
-  color: var(--gray-500);
+  color: var(--gray-700);
   line-height: 1.8;
   margin-bottom: 24px;
 }
@@ -158,7 +200,7 @@ const { t } = useI18n()
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, #6B8CA6, #4A7291);
   color: var(--white);
   font-size: 0.7rem;
   display: flex;
@@ -170,23 +212,25 @@ const { t } = useI18n()
 
 /* Vision Card */
 .vision-card {
-  background: linear-gradient(145deg, var(--primary-light), rgba(255, 107, 53, 0.08));
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
   padding: 40px 32px;
   text-align: center;
-  border: 1px solid rgba(245, 166, 35, 0.15);
+  border: 1px solid rgba(107, 140, 166, 0.12);
 }
 
-.vision-icon {
-  font-size: 3rem;
+.vision-icon-wrap {
   margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
 }
 
 .vision-title {
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--dark);
+  color: #3A5F78;
   margin-bottom: 16px;
 }
 

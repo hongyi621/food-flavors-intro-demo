@@ -2,10 +2,27 @@
   <nav :class="['navbar', { scrolled: isScrolled }]">
     <div class="container nav-container">
       <a href="#" class="logo">
-        <span class="logo-icon">🧪</span>
+        <span class="logo-emblem">
+          <svg width="32" height="32" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="url(#logoGrad)" />
+            <path d="M50 20 C65 35, 75 50, 50 80 C25 50, 35 35, 50 20Z" fill="rgba(255,255,255,0.9)" />
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8941A" />
+                <stop offset="100%" stop-color="#F5B731" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
         <span class="logo-text">
-          <template v-if="lang === 'en'">Epochal<span class="logo-highlight">Aromatic</span></template>
-          <template v-else>珀臣<span class="logo-highlight">香精</span></template>
+          <template v-if="lang === 'en'">
+            <span class="logo-epochal">EPOCHAL</span>
+            <span class="logo-sub">Aromatic Ltd.</span>
+          </template>
+          <template v-else>
+            <span class="logo-epochal">珀臣</span>
+            <span class="logo-sub">香精香料</span>
+          </template>
         </span>
       </a>
 
@@ -24,7 +41,6 @@
         <li><a href="#contact" @click="menuOpen = false">{{ t('nav.contact') }}</a></li>
         <li>
           <button class="lang-toggle" @click="toggleLang" :title="lang === 'en' ? 'Switch to 中文' : 'Switch to English'">
-            <span class="lang-globe">🌐</span>
             <span class="lang-label">{{ lang === 'en' ? '中文' : 'EN' }}</span>
           </button>
         </li>
@@ -62,15 +78,15 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 20px 0;
+  padding: 16px 0;
   transition: var(--transition);
 }
 
 .navbar.scrolled {
-  padding: 12px 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(24px) saturate(1.2);
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.08);
 }
 
 .nav-container {
@@ -83,25 +99,34 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
   z-index: 10;
 }
 
-.logo-icon {
-  font-size: 1.5rem;
+.logo-emblem {
+  display: flex;
+  filter: drop-shadow(0 2px 4px rgba(232, 148, 26, 0.3));
 }
 
 .logo-text {
-  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
 }
 
-.logo-highlight {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.logo-epochal {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.06em;
+}
+
+.logo-sub {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .nav-links {
@@ -125,7 +150,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: var(--brand-orange);
   border-radius: 2px;
   transition: var(--transition);
 }
@@ -135,7 +160,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 
 .nav-links a:hover {
-  color: var(--primary-dark);
+  color: var(--brand-orange);
 }
 
 .nav-cta {
@@ -148,31 +173,24 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 16px;
-  background: var(--primary-light);
-  border: 2px solid rgba(245, 166, 35, 0.2);
+  padding: 6px 14px;
+  background: transparent;
+  border: 1.5px solid var(--gray-300);
   border-radius: var(--radius-full);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--primary-dark);
+  color: var(--gray-700);
   cursor: pointer;
   transition: var(--transition);
+  letter-spacing: 0.04em;
 }
 
 .lang-toggle:hover {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--brand-orange);
   color: var(--white);
-  border-color: transparent;
+  border-color: var(--brand-orange);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
-}
-
-.lang-globe {
-  font-size: 1rem;
-}
-
-.lang-label {
-  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(232, 148, 26, 0.3);
 }
 
 /* Mobile Toggle */

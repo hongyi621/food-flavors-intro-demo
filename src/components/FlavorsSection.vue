@@ -1,11 +1,20 @@
 <template>
   <section id="flavors" class="flavors">
-    <div class="container">
+    <!-- PPT slide 6-7: Purple/mauve with glass bubbles -->
+    <div class="glass-bubbles">
+      <div class="bubble" style="width:180px;height:180px;top:5%;right:3%;opacity:0.15"></div>
+      <div class="bubble" style="width:100px;height:100px;top:25%;right:12%;opacity:0.12"></div>
+      <div class="bubble" style="width:70px;height:70px;bottom:20%;left:3%;opacity:0.13"></div>
+      <div class="bubble" style="width:120px;height:120px;bottom:5%;left:10%;opacity:0.1"></div>
+      <div class="bubble" style="width:45px;height:45px;top:50%;left:6%;opacity:0.15"></div>
+    </div>
+
+    <div class="container flavors-inner">
       <!-- Header -->
       <div class="flavors-header">
-        <div class="section-badge"><span>🧪</span> {{ t('flavors.badge') }}</div>
-        <h2 class="section-title">{{ t('flavors.title') }}</h2>
-        <p class="section-subtitle">{{ t('flavors.subtitle') }}</p>
+        <div class="section-badge flavors-badge">{{ t('flavors.badge') }}</div>
+        <h2 class="section-title flavors-title">{{ t('flavors.title') }}</h2>
+        <p class="section-subtitle flavors-sub">{{ t('flavors.subtitle') }}</p>
       </div>
 
       <!-- Category Tabs -->
@@ -77,7 +86,14 @@ const getCategory = (key) => {
 <style scoped>
 .flavors {
   padding: var(--section-padding);
-  background: var(--light);
+  background: linear-gradient(170deg, #F3EDF7 0%, #EAE0F0 30%, #E0D4E8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.flavors-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .flavors-header {
@@ -85,8 +101,18 @@ const getCategory = (key) => {
   margin-bottom: 48px;
 }
 
-.flavors-header .section-subtitle {
+.flavors-badge {
+  background: rgba(123, 91, 141, 0.12) !important;
+  color: var(--flavor-purple-dark) !important;
+}
+
+.flavors-title {
+  color: var(--flavor-purple-dark);
+}
+
+.flavors-sub {
   margin: 0 auto;
+  color: var(--gray-700);
 }
 
 /* Category Tabs */
@@ -106,23 +132,25 @@ const getCategory = (key) => {
   border-radius: var(--radius-full);
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--gray-500);
-  background: var(--white);
-  border: 1px solid var(--gray-100);
+  color: var(--gray-700);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(123, 91, 141, 0.1);
   transition: var(--transition);
   cursor: pointer;
 }
 
 .tab:hover {
-  color: var(--primary-dark);
-  border-color: var(--primary-light);
+  color: var(--flavor-purple-dark);
+  border-color: var(--flavor-purple);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .tab.active {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--flavor-purple), var(--flavor-purple-dark));
   color: var(--white);
   border-color: transparent;
-  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.3);
+  box-shadow: 0 4px 20px rgba(123, 91, 141, 0.35);
 }
 
 .tab-icon {
@@ -139,12 +167,13 @@ const getCategory = (key) => {
 }
 
 .category-header-card {
-  background: linear-gradient(145deg, var(--primary-light), var(--white));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(232, 220, 240, 0.5));
+  backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
   padding: 32px 24px;
   text-align: center;
-  border: 1px solid rgba(245, 166, 35, 0.1);
-  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(123, 91, 141, 0.12);
+  box-shadow: 0 4px 24px rgba(123, 91, 141, 0.1);
 }
 
 .category-big-icon {
@@ -180,17 +209,18 @@ const getCategory = (key) => {
   align-items: center;
   gap: 10px;
   padding: 14px 24px;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(123, 91, 141, 0.06);
   transition: var(--transition);
   animation: chipIn 0.4s ease-out both;
 }
 
 .flavor-chip:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--primary-light);
+  box-shadow: 0 8px 30px rgba(123, 91, 141, 0.15);
+  border-color: rgba(123, 91, 141, 0.2);
 }
 
 @keyframes chipIn {
@@ -208,7 +238,7 @@ const getCategory = (key) => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--flavor-purple), var(--flavor-purple-dark));
   flex-shrink: 0;
 }
 
@@ -221,7 +251,7 @@ const getCategory = (key) => {
 /* All Categories Overview */
 .all-categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
 }
 
@@ -231,7 +261,8 @@ const getCategory = (key) => {
   align-items: center;
   gap: 6px;
   padding: 20px 12px;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
   border-radius: var(--radius-md);
   border: 2px solid transparent;
   cursor: pointer;
@@ -239,13 +270,15 @@ const getCategory = (key) => {
 }
 
 .mini-category:hover {
-  border-color: var(--primary-light);
+  border-color: rgba(123, 91, 141, 0.25);
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .mini-category.mini-active {
-  border-color: var(--primary);
-  background: var(--primary-light);
+  border-color: var(--flavor-purple);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 20px rgba(123, 91, 141, 0.15);
 }
 
 .mini-icon {
@@ -253,14 +286,14 @@ const getCategory = (key) => {
 }
 
 .mini-name {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--dark);
   text-align: center;
 }
 
 .mini-count {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--gray-500);
   font-weight: 500;
 }

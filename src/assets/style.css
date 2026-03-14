@@ -1,15 +1,31 @@
 /* ==============================
-   FlavorCraft — Global Styles
-   Yellow-Orange Modern Theme
+   Epochal Aromatic — Global Styles
+   PPT-inspired Multi-tone Theme
    ============================== */
 
 :root {
-  /* Primary Palette */
-  --primary: #F5A623;
-  --primary-dark: #E8941A;
-  --primary-light: #FFECD2;
-  --secondary: #FF6B35;
-  --accent: #FFD700;
+  /* Brand Palette (from PPT Epochal logo) */
+  --brand-orange: #E8941A;
+  --brand-yellow: #F5B731;
+  --brand-gold: #D4890E;
+
+  /* Section Color Themes (from PPT slides) */
+  --hero-orange: #F5A623;
+  --hero-orange-dark: #D4890E;
+  --about-green: #8CB369;
+  --about-green-light: #EFF6E8;
+  --about-green-dark: #6A8F4E;
+  --rd-brown: #5D4037;
+  --rd-brown-light: #8D6E63;
+  --tech-olive: #8B7D3C;
+  --tech-olive-light: #C5BA6E;
+  --flavor-purple: #7B5B8D;
+  --flavor-purple-light: #E8DCF0;
+  --flavor-purple-dark: #5E3F6B;
+  --app-olive: #7D8C5C;
+  --app-olive-light: #E8EDDE;
+  --contact-blue: #6B8CA6;
+  --contact-blue-light: #E0EBF2;
 
   /* Neutrals */
   --dark: #1A1A2E;
@@ -18,8 +34,9 @@
   --gray-500: #7C7C8A;
   --gray-300: #B8B8C0;
   --gray-100: #F0F0F5;
-  --light: #FFFAF5;
+  --light: #FAFAF8;
   --white: #FFFFFF;
+  --cream: #FFF9F0;
 
   /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -39,6 +56,12 @@
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
   --shadow-glow: 0 0 40px rgba(245, 166, 35, 0.3);
+
+  /* Legacy compat vars */
+  --primary: #E8941A;
+  --primary-dark: #D4890E;
+  --primary-light: #FFF3E0;
+  --secondary: #F5B731;
 
   /* Border Radius */
   --radius-sm: 8px;
@@ -117,14 +140,14 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
   color: var(--white);
-  box-shadow: 0 4px 20px rgba(245, 166, 35, 0.4);
+  box-shadow: 0 4px 20px rgba(232, 148, 26, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(245, 166, 35, 0.5);
+  box-shadow: 0 8px 30px rgba(232, 148, 26, 0.5);
 }
 
 .btn-outline {
@@ -140,7 +163,7 @@ button {
 
 .btn-secondary {
   background: var(--white);
-  color: var(--primary-dark);
+  color: var(--brand-orange);
   box-shadow: var(--shadow-md);
 }
 
@@ -156,7 +179,7 @@ button {
   gap: 8px;
   padding: 8px 20px;
   background: var(--primary-light);
-  color: var(--primary-dark);
+  color: var(--brand-orange);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   font-weight: 600;
@@ -179,6 +202,42 @@ button {
   color: var(--gray-500);
   max-width: 560px;
   line-height: 1.7;
+}
+
+/* ==============================
+   Glass Bubble Decorations
+   (recurring PPT motif)
+   ============================== */
+.glass-bubbles {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 255, 255, 0.05) 60%,
+    transparent 70%);
+  box-shadow:
+    inset 0 -4px 12px rgba(255, 255, 255, 0.15),
+    0 2px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 30%;
+  height: 25%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.7), transparent);
+  transform: rotate(-30deg);
 }
 
 /* Fade-in animation */

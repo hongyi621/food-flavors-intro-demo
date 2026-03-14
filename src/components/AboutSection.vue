@@ -1,57 +1,59 @@
 <template>
   <section id="about" class="about">
-    <div class="container">
-      <div class="about-grid">
-        <!-- Left: R&D Process Timeline -->
-        <div class="about-visual">
-          <div class="timeline">
-            <div
-              v-for="(step, index) in t('about.steps')"
-              :key="index"
-              class="timeline-step"
-            >
-              <div class="step-marker">
-                <span class="step-num">{{ step.num }}</span>
-                <div class="step-line" v-if="index < t('about.steps').length - 1"></div>
-              </div>
-              <div class="step-content">
-                <h4 class="step-title">{{ step.title }}</h4>
-                <p class="step-desc">{{ step.desc }}</p>
-              </div>
+    <!-- Glass bubbles (PPT slide 11 style) -->
+    <div class="glass-bubbles">
+      <div class="bubble" style="width:140px;height:140px;top:10%;left:5%;opacity:0.18"></div>
+      <div class="bubble" style="width:80px;height:80px;top:30%;left:2%;opacity:0.15"></div>
+      <div class="bubble" style="width:50px;height:50px;bottom:15%;left:8%;opacity:0.12"></div>
+    </div>
+
+    <div class="container about-inner">
+      <!-- Left: R&D timeline -->
+      <div class="about-visual">
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          <div
+            v-for="(step, i) in t('about.steps')"
+            :key="i"
+            class="timeline-step"
+          >
+            <div class="step-marker">
+              <span class="step-num">{{ step.num }}</span>
+            </div>
+            <div class="step-content">
+              <h4 class="step-title">{{ step.title }}</h4>
+              <p class="step-desc">{{ step.desc }}</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Right: Content -->
-        <div class="about-content">
-          <div class="section-badge"><span>🔬</span> {{ t('about.badge') }}</div>
-          <h2 class="section-title" v-html="t('about.title').replace('\\n', '<br/>')"></h2>
-          <p class="about-text">{{ t('about.description') }}</p>
-          <p class="about-text">{{ t('about.description2') }}</p>
+      <!-- Right: Content -->
+      <div class="about-content">
+        <div class="section-badge about-badge">{{ t('about.badge') }}</div>
+        <h2 class="section-title about-title">{{ t('about.title') }}</h2>
+        <p class="about-desc">{{ t('about.description') }}</p>
+        <p class="about-desc">{{ t('about.description2') }}</p>
 
-          <div class="about-highlights">
-            <div class="highlight-card">
-              <div class="highlight-icon">🎯</div>
-              <div class="highlight-number">5</div>
-              <div class="highlight-label">{{ lang === 'en' ? 'Step R&D Process' : '步研发流程' }}</div>
-            </div>
-            <div class="highlight-card">
-              <div class="highlight-icon">🤝</div>
-              <div class="highlight-number">1:1</div>
-              <div class="highlight-label">{{ lang === 'en' ? 'Client Collaboration' : '客户协作' }}</div>
-            </div>
-            <div class="highlight-card">
-              <div class="highlight-icon">✅</div>
-              <div class="highlight-number">100%</div>
-              <div class="highlight-label">{{ lang === 'en' ? 'Quality Assured' : '质量保证' }}</div>
-            </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <span class="hl-num">5</span>
+            <span class="hl-label">{{ lang === 'en' ? 'Step R&D Process' : '步研发流程' }}</span>
           </div>
-
-          <a href="#flavors" class="btn btn-primary" style="margin-top: 12px;">
-            {{ lang === 'en' ? 'View Our Flavors' : '查看产品系列' }}
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <div class="highlight-card">
+            <span class="hl-num">1:1</span>
+            <span class="hl-label">{{ lang === 'en' ? 'Client Collaboration' : '客户协作' }}</span>
+          </div>
+          <div class="highlight-card">
+            <span class="hl-num">100%</span>
+            <span class="hl-label">{{ lang === 'en' ? 'Quality Assurance' : '品质保证' }}</span>
+          </div>
         </div>
+
+        <a href="#flavors" class="btn btn-primary about-btn">
+          {{ lang === 'en' ? 'View Our Flavors' : '查看产品系列' }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -65,82 +67,128 @@ const { t, lang } = useI18n()
 <style scoped>
 .about {
   padding: var(--section-padding);
-  background: var(--white);
+  background: linear-gradient(165deg, #EFF6E8 0%, #F5F9F0 40%, #FAFCF7 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-.about-grid {
+.about-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 80px;
   align-items: center;
 }
 
-.about-text {
-  font-size: 1rem;
-  color: var(--gray-500);
-  line-height: 1.8;
+/* Badge */
+.about-badge {
+  background: rgba(140, 179, 105, 0.15) !important;
+  color: var(--about-green-dark) !important;
+}
+
+.about-title {
+  color: var(--about-green-dark);
+  white-space: pre-line;
+}
+
+.about-desc {
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  line-height: 1.85;
   margin-bottom: 16px;
 }
 
+.about-btn {
+  background: linear-gradient(135deg, var(--about-green), var(--about-green-dark)) !important;
+  box-shadow: 0 4px 20px rgba(140, 179, 105, 0.35) !important;
+}
+
+.about-btn:hover {
+  box-shadow: 0 8px 30px rgba(140, 179, 105, 0.5) !important;
+}
+
 /* Timeline */
-.timeline {
+.about-visual {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  justify-content: center;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--about-green), rgba(140, 179, 105, 0.15));
+  border-radius: 2px;
 }
 
 .timeline-step {
   display: flex;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
 }
 
 .step-marker {
+  position: absolute;
+  left: -40px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--about-green), var(--about-green-dark));
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(140, 179, 105, 0.35);
   flex-shrink: 0;
 }
 
 .step-num {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: var(--white);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.3);
-}
-
-.step-line {
-  width: 2px;
-  flex: 1;
-  min-height: 30px;
-  background: linear-gradient(180deg, var(--primary), var(--primary-light));
-  border-radius: 2px;
+  color: var(--white);
+  letter-spacing: 0.02em;
 }
 
 .step-content {
-  padding-bottom: 32px;
-  padding-top: 8px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(140, 179, 105, 0.1);
+  transition: var(--transition);
+  width: 100%;
+}
+
+.step-content:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 24px rgba(140, 179, 105, 0.12);
 }
 
 .step-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--dark);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .step-desc {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--gray-500);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Highlights */
@@ -148,51 +196,47 @@ const { t, lang } = useI18n()
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 28px;
-  margin-bottom: 8px;
+  margin: 32px 0;
 }
 
 .highlight-card {
-  text-align: center;
-  padding: 20px 12px;
-  background: var(--primary-light);
+  background: var(--white);
   border-radius: var(--radius-md);
+  padding: 20px 16px;
+  text-align: center;
+  border: 1px solid rgba(140, 179, 105, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
   transition: var(--transition);
 }
 
 .highlight-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 30px rgba(140, 179, 105, 0.15);
 }
 
-.highlight-icon {
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-}
-
-.highlight-number {
+.hl-num {
+  display: block;
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--dark);
-  line-height: 1;
+  color: var(--about-green);
   margin-bottom: 4px;
 }
 
-.highlight-label {
+.hl-label {
   font-size: 0.78rem;
+  font-weight: 600;
   color: var(--gray-500);
-  font-weight: 500;
 }
 
 /* Responsive */
 @media (max-width: 968px) {
-  .about-grid {
+  .about-inner {
     grid-template-columns: 1fr;
     gap: 48px;
   }
 
-  .about-grid > .about-visual {
+  .about-visual {
     order: 2;
   }
 }

@@ -5,10 +5,25 @@
         <!-- Brand -->
         <div class="footer-brand">
           <a href="#" class="footer-logo">
-            <span class="logo-icon">🧪</span>
+            <svg width="28" height="28" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="url(#footerGrad)" />
+              <path d="M50 20 C65 35, 75 50, 50 80 C25 50, 35 35, 50 20Z" fill="rgba(255,255,255,0.9)" />
+              <defs>
+                <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E8941A" />
+                  <stop offset="100%" stop-color="#F5B731" />
+                </linearGradient>
+              </defs>
+            </svg>
             <span class="logo-text">
-              <template v-if="lang === 'en'">Epochal<span class="logo-highlight">Aromatic</span></template>
-              <template v-else>珀臣<span class="logo-highlight">香精</span></template>
+              <template v-if="lang === 'en'">
+                <span class="logo-name">EPOCHAL</span>
+                <span class="logo-sub">Aromatic Ltd.</span>
+              </template>
+              <template v-else>
+                <span class="logo-name">珀臣</span>
+                <span class="logo-sub">香精香料</span>
+              </template>
             </span>
           </a>
           <p class="footer-desc">{{ t('footer.desc') }}</p>
@@ -48,7 +63,9 @@
               v-model="email"
               required
             />
-            <button type="submit" class="newsletter-btn">→</button>
+            <button type="submit" class="newsletter-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
           </form>
         </div>
       </div>
@@ -75,17 +92,17 @@ const currentYear = new Date().getFullYear()
 
 const subscribe = () => {
   alert(lang.value === 'en'
-    ? `Thanks for subscribing with ${email.value}! 🎉`
-    : `感谢您使用 ${email.value} 订阅！🎉`)
+    ? `Thanks for subscribing with ${email.value}!`
+    : `感谢您使用 ${email.value} 订阅！`)
   email.value = ''
 }
 </script>
 
 <style scoped>
 .footer {
-  background: var(--dark);
+  background: #1A1A2E;
   padding: 80px 0 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-grid {
@@ -93,36 +110,40 @@ const subscribe = () => {
   grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
   gap: 48px;
   padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
+  gap: 12px;
   margin-bottom: 16px;
 }
 
-.footer-logo .logo-icon {
-  font-size: 1.5rem;
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
 }
 
-.footer-logo .logo-text {
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--white);
+  letter-spacing: 0.06em;
 }
 
-.footer-logo .logo-highlight {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.logo-sub {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .footer-desc {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.7;
 }
 
@@ -146,7 +167,7 @@ const subscribe = () => {
 }
 
 .footer-links a:hover {
-  color: var(--primary);
+  color: var(--brand-orange);
   transform: translateX(4px);
   display: inline-block;
 }
@@ -163,7 +184,7 @@ const subscribe = () => {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .newsletter-input {
@@ -183,10 +204,10 @@ const subscribe = () => {
 
 .newsletter-btn {
   padding: 12px 20px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
   color: var(--white);
-  font-size: 1.1rem;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
   border-radius: 0;
   transition: var(--transition);
 }
@@ -217,7 +238,7 @@ const subscribe = () => {
 }
 
 .footer-bottom-links a:hover {
-  color: var(--primary);
+  color: var(--brand-orange);
 }
 
 @media (max-width: 968px) {
