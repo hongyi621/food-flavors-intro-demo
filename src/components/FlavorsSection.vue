@@ -65,7 +65,7 @@ import { useI18n } from '../composables/useI18n'
 
 const { t, lang } = useI18n()
 
-const categoryKeys = ['citrus', 'berry', 'fruit', 'nut', 'beverage', 'dairy', 'specialty']
+const categoryKeys = ['citrus', 'berry', 'fruit', 'nut', 'brown', 'alcoholic', 'dairy', 'tea', 'specialty']
 const activeCategory = ref('citrus')
 
 const getCategory = (key) => {

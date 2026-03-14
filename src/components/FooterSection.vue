@@ -8,7 +8,7 @@
             <span class="logo-icon">🧪</span>
             <span class="logo-text">
               <template v-if="lang === 'en'">Epochal<span class="logo-highlight">Aromatic</span></template>
-              <template v-else>时代<span class="logo-highlight">芳香</span></template>
+              <template v-else>珀臣<span class="logo-highlight">香精</span></template>
             </span>
           </a>
           <p class="footer-desc">{{ t('footer.desc') }}</p>

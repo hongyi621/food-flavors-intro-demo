@@ -18,9 +18,9 @@ const messages = {
     // Hero
     hero: {
       badge: 'Professional Flavors & Fragrances',
-      titleLine1: 'Shanghai Epochal',
+      titleLine1: 'Epochal',
       titleLine2: 'Aromatic Ltd.',
-      subtitle: 'A professional Flavors & Fragrances enterprise dedicated to delivering high-quality, safe, and innovative flavor solutions. With a specialized R&D team and experienced technical support specialists, we provide customized flavor development services tailored to diverse industry needs.',
+      subtitle: 'As a professional Flavors & Fragrances enterprise, Shanghai Epochal Aromatic LTD. possesses not only specialized R&D group, flexible sales team, but also experienced technical support specialists in both of the flavors and fragrances sectors.',
       cta1: 'Explore Flavors',
       cta2: 'Learn More',
       stat1Value: '50+',
@@ -29,15 +29,15 @@ const messages = {
       stat2Label: 'Industry Sectors',
       stat3Value: '100%',
       stat3Label: 'Natural Ingredients',
-      motto: 'Your Success Is Our Mission',
+      motto: 'Your Success, We Growing',
     },
 
     // About / Expertise
     about: {
-      badge: 'Our Expertise',
+      badge: 'Research & Development',
       title: 'Integrated R&D and\nCustomer Collaboration',
-      description: 'Our R&D center works closely with our sales team to gain an accurate understanding of customer needs and market expectations.',
-      description2: 'This collaborative approach ensures that each flavor solution reflects the customer\'s intended concept, product positioning, and brand image.',
+      description: 'In Epochal Aromatic, our R&D center maintains close cooperation with the sales staff to have an accurate understanding of customers\' needs and desires. Following thorough discussion with the customers, we create flavors and samples for the final products, which can better represent the customer\'s intended concepts and images, and then evaluate them. After receiving approval from customer, the formulation is finalized.',
+      description2: 'With the development of health-food\'s market, Epochal Aromatic has continuously been engaged in research activities in many areas to obtain the safe and reliable flavors from natural ingredients. There are natural extracts, such as Green tea, lemon tea, milk & fruit, as well as those full of fresh aroma & taste of bakery.',
       steps: [
         { num: '01', title: 'Consultation', desc: 'In-depth consultation and discussion to understand your needs' },
         { num: '02', title: 'Concept Creation', desc: 'Concept-based flavor creation and initial formulation' },
@@ -66,25 +66,35 @@ const messages = {
         fruit: {
           name: 'Fruit',
           icon: '🍍',
-          items: ['Apple', 'Banana', 'Watermelon', 'Melon', 'Grape', 'Passionfruit', 'Pineapple', 'Mango', 'Coconut'],
+          items: ['Apple', 'Banana', 'Watermelon', 'Hami Melon', 'Grape', 'Passionfruit', 'Pineapple', 'Mango', 'Coconut', 'Haw'],
         },
         nut: {
-          name: 'Nut & Cocoa',
+          name: 'Nut',
           icon: '🌰',
-          items: ['Peanut', 'Hazelnut', 'Cocoa Butter', 'Cocoa', 'Chocolate'],
+          items: ['Peanut', 'Walnut', 'Hazelnut'],
         },
-        beverage: {
-          name: 'Beverage & Liquor',
+        brown: {
+          name: 'Brown',
           icon: '☕',
-          items: ['Coffee', 'Malt', 'Wine', 'Brandy', 'Beer', 'Chinese Hard Liquor'],
+          items: ['Cocoa Butter', 'Cocoa', 'Chocolate', 'Coffee', 'Malt'],
+        },
+        alcoholic: {
+          name: 'Alcoholic',
+          icon: '🍷',
+          items: ['Wine', 'Brandy', 'Beer', 'Chinese Hard-Liquor'],
         },
         dairy: {
-          name: 'Dairy & Cream',
+          name: 'Dairy',
           icon: '🥛',
           items: ['Milk', 'Cream', 'Butter', 'Custard', 'Egg', 'Vanilla'],
         },
+        tea: {
+          name: 'Tea',
+          icon: '🍵',
+          items: ['Green Tea', 'Red Tea', 'Lemon-tea', 'Jasmin'],
+        },
         specialty: {
-          name: 'Specialty Flavors',
+          name: 'Others',
           icon: '🌿',
           items: ['Green Bean', 'Red Bean', 'Mint', 'Cola', 'Taro', 'Ginseng', 'Sesame'],
         },
@@ -94,48 +104,53 @@ const messages = {
     // Applications
     applications: {
       badge: 'Application Range',
-      title: 'Industry Applications',
+      title: 'Application Range',
       subtitle: 'Our flavors are widely used across multiple industries.',
       categories: [
         {
           name: 'Confectionery',
           icon: '🍬',
-          items: ['Chocolate', 'Chewing Candy', 'Gum', 'Jellies'],
+          items: ['HBC', 'Chocolate', 'Chewing Candy', 'Gum & Jellies'],
         },
         {
-          name: 'Beverages',
+          name: 'Beverage',
           icon: '🥤',
-          items: ['Tea', 'Juice', 'Powder Drinks', 'Smoothies', 'Flavoured Milk', 'Yoghurt'],
+          items: ['CSD', 'RTD Tea', 'Juice', 'Powder Drink'],
+        },
+        {
+          name: 'Dairy & Dessert',
+          icon: '🧁',
+          items: ['Yoghurt', 'Smoothie', 'Flavoured Milk'],
         },
         {
           name: 'Bakery',
           icon: '🍰',
-          items: ['Crackers', 'Cakes', 'Cookies', 'Pies', 'Sandwich Biscuits'],
+          items: ['Cracker', 'Cake', 'Cookie', 'Pie', 'Sandwich Biscuit'],
         },
         {
-          name: 'Oral Care & Functional',
+          name: 'Oral Care',
           icon: '🦷',
-          items: ['Toothpaste', 'Functional Chewing Gum', 'Mouthwash'],
+          items: ['Tooth Paste', 'Functional Chewing Gum', 'Mouthwash'],
         },
       ],
     },
 
     // Why Choose Us
     whyUs: {
-      badge: 'Why Choose Us',
+      badge: 'Technical Capabilities',
       title: 'Why Choose Epochal Aromatic?',
       subtitle: 'We are committed to delivering innovative, safe, and reliable flavor solutions.',
       reasons: [
-        { icon: '🔬', title: 'Specialized R&D', desc: 'Dedicated research team with deep expertise in flavor science' },
-        { icon: '🎨', title: 'Custom Development', desc: 'Tailored flavor solutions designed for your unique products' },
-        { icon: '⚡', title: 'Flexible Service', desc: 'Responsive and agile approach to meet tight timelines' },
-        { icon: '🛡️', title: 'Technical Support', desc: 'Experienced specialists for formulation and application guidance' },
-        { icon: '🌿', title: 'Natural & Safe', desc: 'Commitment to safety, natural extracts, and clean label ingredients' },
-        { icon: '🌍', title: 'Wide Experience', desc: 'Proven track record across confectionery, beverages, bakery, and more' },
+        { icon: '📦', title: 'Complete Product Range', desc: 'Comprehensive flavor portfolio covering all major categories' },
+        { icon: '🎨', title: 'Aromatic, Authentic Profile', desc: 'True-to-nature flavor profiles with aromatic excellence' },
+        { icon: '🧪', title: 'Special Flavor', desc: 'Proprietary specialty flavors with professional technical expertise' },
+        { icon: '🔬', title: 'Cutting Edge Analytical Ability', desc: 'Advanced analytical instruments for precise flavor development' },
+        { icon: '🛡️', title: 'High Quality Guarantee', desc: 'Rigorous quality control ensuring consistency and safety' },
+        { icon: '💰', title: 'Cost-effective', desc: 'Competitive pricing without compromising on quality' },
       ],
       healthBadge: 'Health & Natural Ingredients',
       healthTitle: 'Commitment to Natural Quality',
-      healthDesc: 'With the rapid growth of the health food market, we continuously invest in research and innovation to develop safe and reliable flavor systems, natural extracts, and fresh, authentic aroma profiles.',
+      healthDesc: 'In response to the increasingly diversifying consumer needs, we are required to accurately attend to wide-range demands. Beside creating tea flavors, milk flavor and fruit flavors etc. for food products and beverages, we pursue safe, reliable and natural flavor materials to make products with value other than aroma and taste.',
       healthPoints: [
         'Safe and reliable flavor systems',
         'Natural extracts (green tea, lemon tea, fruit extracts, milk notes)',
@@ -143,7 +158,7 @@ const messages = {
         'Natural and high-value flavor materials',
       ],
       visionTitle: 'Our Vision',
-      visionDesc: 'To respond to the increasingly diversified needs of global consumers by delivering innovative, safe, and reliable flavor solutions that elevate product value.',
+      visionDesc: 'In response to the increasingly diversifying consumer needs, we pursue safe, reliable and natural flavor materials to make products with value other than aroma and taste.',
     },
 
     // Contact
@@ -176,7 +191,7 @@ const messages = {
 
     // Footer
     footer: {
-      desc: 'Professional Flavors & Fragrances enterprise delivering high-quality, safe, and innovative flavor solutions.',
+      desc: 'As a professional Flavors & Fragrances enterprise, Epochal Aromatic possesses specialized R&D, flexible sales team, and experienced technical support in both flavors and fragrances sectors.',
       quickLinks: 'Quick Links',
       products: 'Products',
       stayUpdated: 'Stay Updated',
@@ -207,9 +222,9 @@ const messages = {
     // Hero
     hero: {
       badge: '专业香精香料解决方案',
-      titleLine1: '上海时代',
-      titleLine2: '芳香有限公司',
-      subtitle: '一家专业的香精香料企业，致力于提供高品质、安全、创新的香精解决方案。凭借专业的研发团队和经验丰富的技术支持专家，我们为不同行业提供量身定制的香精开发服务。',
+      titleLine1: '珀臣',
+      titleLine2: '香精',
+      subtitle: '上海珀臣香精香料有限公司作为一家专业的香精香料公司，拥有强大的科研技术力量，灵活的专业销售团队，并且在食用香精和日用香精应用领域都配有经验丰富的技术人员。',
       cta1: '探索产品',
       cta2: '了解更多',
       stat1Value: '50+',
@@ -218,15 +233,15 @@ const messages = {
       stat2Label: '行业领域',
       stat3Value: '100%',
       stat3Label: '天然原料',
-      motto: '您的成功就是我们的使命',
+      motto: '你的成功，我的成长',
     },
 
     // About / Expertise
     about: {
-      badge: '核心优势',
+      badge: '研究与开发',
       title: '研发与客户\n协同合作',
-      description: '我们的研发中心与销售团队紧密合作，准确理解客户需求和市场期望。',
-      description2: '这种协同合作方式确保每一个香精解决方案都能体现客户的产品概念、市场定位和品牌形象。',
+      description: '我们的研发人员与销售团队保持着紧密的联系，通过共同分析客户信息达到准确把握客户诉求。通过与客户的沟通，根据客户对目标产品的描述，我们创造出合适的香精和试作品并与客户共同评价这些香精和产品。通过不断的评价和改良，直到客户最终满意后，我们将保证该香精的供给唯一性和高品质性。',
+      description2: '随着健康食品市场的不断发展，我们的研发人员也在不断探求更加安全与天然的香精和素材。目前，我们不仅开发有绿茶、柠檬茶、牛奶、水果等系列天然和天然等同香精，同时也开发出各类香气和口味上佳的耐温类香精。',
       steps: [
         { num: '01', title: '深入沟通', desc: '与客户进行深入的咨询和讨论，了解需求' },
         { num: '02', title: '概念创作', desc: '基于概念的香精创作和初步配方' },
@@ -238,93 +253,108 @@ const messages = {
 
     // Flavors
     flavors: {
-      badge: '产品系列',
+      badge: '产品香型',
       title: '甜味香精系列',
       subtitle: '全面的优质香精系列，采用天然原料精心制作，适用于多种应用场景。',
       categories: {
         citrus: {
           name: '柑橘类',
           icon: '🍊',
-          items: ['柠檬', '橘子', '青柠', '西柚', '橙子'],
+          items: ['柠檬', '桔子', '白柠檬', '西柚', '橙'],
         },
         berry: {
-          name: '莓果类',
+          name: '莓类',
           icon: '🍓',
           items: ['草莓', '蓝莓', '黑加仑', '黑莓'],
         },
         fruit: {
-          name: '水果类',
+          name: '其它水果类',
           icon: '🍍',
-          items: ['苹果', '香蕉', '西瓜', '甜瓜', '葡萄', '百香果', '菠萝', '芒果', '椰子'],
+          items: ['苹果', '香蕉', '西瓜', '哈密瓜', '葡萄', '西番莲', '菠萝', '芒果', '椰子', '山楂'],
         },
         nut: {
-          name: '坚果可可类',
+          name: '坚果类',
           icon: '🌰',
-          items: ['花生', '榛子', '可可脂', '可可', '巧克力'],
+          items: ['花生', '核桃', '榛子'],
         },
-        beverage: {
-          name: '饮料酒类',
+        brown: {
+          name: '棕色类',
           icon: '☕',
-          items: ['咖啡', '麦芽', '葡萄酒', '白兰地', '啤酒', '白酒'],
+          items: ['可可油', '可可', '巧克力', '咖啡', '麦芽'],
+        },
+        alcoholic: {
+          name: '酒类',
+          icon: '🍷',
+          items: ['葡萄酒', '白兰地', '啤酒', '白酒'],
         },
         dairy: {
-          name: '乳品奶油类',
+          name: '奶类',
           icon: '🥛',
-          items: ['牛奶', '奶油', '黄油', '蛋奶', '鸡蛋', '香草'],
+          items: ['牛奶', '奶油', '黄油', '蛋奶', '蛋黄', '香草'],
+        },
+        tea: {
+          name: '茶类',
+          icon: '🍵',
+          items: ['绿茶', '红茶', '柠檬茶', '茉莉茶'],
         },
         specialty: {
-          name: '特色风味',
+          name: '其它',
           icon: '🌿',
-          items: ['绿豆', '红豆', '薄荷', '可乐', '芋头', '人参', '芝麻'],
+          items: ['绿豆', '红豆', '薄荷', '可乐', '香芋', '人参', '芝麻'],
         },
       },
     },
 
     // Applications
     applications: {
-      badge: '应用领域',
-      title: '行业应用',
+      badge: '产品应用范围',
+      title: '产品应用范围',
       subtitle: '我们的香精广泛应用于多个行业领域。',
       categories: [
         {
           name: '糖果',
           icon: '🍬',
-          items: ['巧克力', '奶糖', '口香糖', '果冻'],
+          items: ['硬糖 HBC', '巧克力', '软糖', '胶基糖'],
         },
         {
           name: '饮料',
           icon: '🥤',
-          items: ['茶饮', '果汁', '冲饮粉', '奶昔', '调味乳', '酸奶'],
+          items: ['碳酸饮料 CSD', '茶饮料 RTD Tea', '果汁饮料', '固体饮料'],
         },
         {
-          name: '烘焙',
+          name: '奶制品与甜点',
+          icon: '🧁',
+          items: ['酸奶', '果汁奶', '风味奶饮料'],
+        },
+        {
+          name: '焙烤食品',
           icon: '🍰',
           items: ['饼干', '蛋糕', '曲奇', '派', '夹心饼干'],
         },
         {
-          name: '口腔护理及功能性产品',
+          name: '口腔护理产品',
           icon: '🦷',
-          items: ['牙膏', '功能性口香糖', '漱口水'],
+          items: ['牙膏', '口香糖', '漱口水'],
         },
       ],
     },
 
     // Why Choose Us
     whyUs: {
-      badge: '选择我们',
-      title: '为什么选择时代芳香？',
+      badge: '产品能力',
+      title: '为什么选择珀臣香精？',
       subtitle: '我们致力于提供创新、安全、可靠的香精解决方案。',
       reasons: [
-        { icon: '🔬', title: '专业研发', desc: '专注于香精科学的专业研究团队' },
-        { icon: '🎨', title: '定制开发', desc: '为您的独特产品量身定制香精方案' },
-        { icon: '⚡', title: '灵活服务', desc: '快速响应，满足紧迫的时间要求' },
-        { icon: '🛡️', title: '技术支持', desc: '经验丰富的配方和应用指导专家' },
-        { icon: '🌿', title: '天然安全', desc: '坚持安全、天然提取物和清洁标签原料' },
-        { icon: '🌍', title: '丰富经验', desc: '在糖果、饮料、烘焙等领域拥有良好的业绩' },
+        { icon: '📦', title: '完整的产品系列', desc: '涵盖所有主要品类的全面香精产品线' },
+        { icon: '🎨', title: '气味芬芳，香味纯正', desc: '还原自然的香气特征，芳香卓越' },
+        { icon: '🧪', title: '专业技术的香精', desc: '具有专业技术的特色香精产品' },
+        { icon: '🔬', title: '尖端分析的仪器', desc: '先进的分析仪器，精确的香精开发' },
+        { icon: '🛡️', title: '高品质保证', desc: '严格的质量控制，确保一致性和安全性' },
+        { icon: '💰', title: '成本经济', desc: '在不影响品质的前提下提供有竞争力的价格' },
       ],
       healthBadge: '健康与天然原料',
       healthTitle: '对天然品质的承诺',
-      healthDesc: '随着健康食品市场的快速增长，我们持续投入研究和创新，开发安全可靠的香精体系、天然提取物以及新鲜、真实的香气特征。',
+      healthDesc: '为了顺应市场发展和客户需求的多元化，上海珀臣香精香料有限公司在食品香精更广阔的领域中不断壮大自己的技术和业务力量。在发展传统的食品香精，比如，茶香精，牛奶香精和果味香精的同时，我们也不断的探寻和创造更加安全、可靠、天然的香精和素材，使产品在满足香气和口味之外，具有更高的附加价值。',
       healthPoints: [
         '安全可靠的香精体系',
         '天然提取物（绿茶、柠檬茶、水果提取物、奶香等）',
@@ -332,7 +362,7 @@ const messages = {
         '天然高价值香精原料',
       ],
       visionTitle: '我们的愿景',
-      visionDesc: '响应全球消费者日益多样化的需求，提供创新、安全、可靠的香精解决方案，提升产品价值。',
+      visionDesc: '顺应市场发展和客户需求的多元化，不断探寻和创造更加安全、可靠、天然的香精和素材，使产品具有更高的附加价值。',
     },
 
     // Contact
@@ -345,7 +375,7 @@ const messages = {
       address: '公司地址',
       emailVal: 'hello@epochal-aromatic.com',
       phoneVal: '+86 21 5555 8888',
-      addressVal: '中国上海',
+      addressVal: '中国 · 上海',
       firstName: '姓',
       lastName: '名',
       emailLabel: '电子邮箱',
@@ -365,13 +395,13 @@ const messages = {
 
     // Footer
     footer: {
-      desc: '专业的香精香料企业，致力于提供高品质、安全、创新的香精解决方案。',
+      desc: '上海珀臣香精香料有限公司作为一家专业的香精香料公司，拥有强大的科研技术力量，灵活的专业销售团队，并且在食用香精和日用香精应用领域都配有经验丰富的技术人员。',
       quickLinks: '快速链接',
       products: '产品系列',
       stayUpdated: '订阅更新',
       newsletterDesc: '订阅获取最新香精产品、行业资讯和公司动态。',
       emailPlaceholder: '您的邮箱',
-      copyright: '© {year} 上海时代芳香有限公司 版权所有',
+      copyright: '© {year} 上海珀臣香精香料有限公司 版权所有',
       privacy: '隐私政策',
       terms: '服务条款',
       classicFlavors: '经典香精',
