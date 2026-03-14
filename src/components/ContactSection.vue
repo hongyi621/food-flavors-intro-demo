@@ -7,7 +7,7 @@
     </div>
 
     <div class="container contact-inner">
-      <div class="contact-info">
+      <div class="contact-info reveal-left">
         <div class="section-badge contact-badge">{{ t('contact.badge') }}</div>
         <h2 class="section-title contact-title">{{ t('contact.title') }}</h2>
         <p class="contact-desc">{{ t('contact.desc') }}</p>
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="contact-form-wrap">
+      <div class="contact-form-wrap reveal-right">
         <form class="contact-form" @submit.prevent="submitForm">
           <div class="form-row">
             <div class="form-group">

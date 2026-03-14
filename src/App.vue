@@ -13,6 +13,7 @@
 
 <script setup>
 import { useI18n } from './composables/useI18n'
+import { useScrollReveal } from './composables/useScrollReveal'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import AboutSection from './components/AboutSection.vue'
@@ -23,6 +24,7 @@ import ContactSection from './components/ContactSection.vue'
 import FooterSection from './components/FooterSection.vue'
 
 const { lang } = useI18n()
+useScrollReveal()
 </script>
 
 <style>

@@ -11,14 +11,14 @@
 
     <div class="container flavors-inner">
       <!-- Header -->
-      <div class="flavors-header">
+      <div class="flavors-header reveal">
         <div class="section-badge flavors-badge">{{ t('flavors.badge') }}</div>
         <h2 class="section-title flavors-title">{{ t('flavors.title') }}</h2>
         <p class="section-subtitle flavors-sub">{{ t('flavors.subtitle') }}</p>
       </div>
 
       <!-- Category Tabs -->
-      <div class="category-tabs">
+      <div class="category-tabs reveal">
         <button
           v-for="key in categoryKeys"
           :key="key"
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Active Category Display -->
-      <div class="category-display">
+      <div class="category-display reveal-scale">
         <div class="category-header-card">
           <span class="category-big-icon">{{ getCategory(activeCategory).icon }}</span>
           <h3 class="category-name">{{ getCategory(activeCategory).name }}</h3>
@@ -65,6 +65,11 @@
         </div>
       </div>
     </div>
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,35 C360,0 720,60 1080,20 C1260,5 1380,15 1440,25 L1440,60 L0,60Z" fill="#E8EDDE"/>
+      </svg>
+    </div>
   </section>
 </template>
 
@@ -86,6 +91,7 @@ const getCategory = (key) => {
 <style scoped>
 .flavors {
   padding: var(--section-padding);
+  padding-bottom: 120px;
   background: linear-gradient(170deg, #F3EDF7 0%, #EAE0F0 30%, #E0D4E8 100%);
   position: relative;
   overflow: hidden;

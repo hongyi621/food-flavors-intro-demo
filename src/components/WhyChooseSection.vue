@@ -9,13 +9,13 @@
 
     <div class="container why-inner">
       <!-- Why Choose Us -->
-      <div class="why-header">
+      <div class="why-header reveal">
         <div class="section-badge why-badge">{{ t('whyUs.badge') }}</div>
         <h2 class="section-title why-title">{{ t('whyUs.title') }}</h2>
         <p class="section-subtitle why-sub">{{ t('whyUs.subtitle') }}</p>
       </div>
 
-      <div class="reasons-grid">
+      <div class="reasons-grid reveal">
         <div
           v-for="(reason, index) in t('whyUs.reasons')"
           :key="index"
@@ -30,7 +30,7 @@
       </div>
 
       <!-- Health & Natural Section (PPT slide 10: blue theme) -->
-      <div class="health-section">
+      <div class="health-section reveal-scale">
         <div class="health-content">
           <div class="section-badge health-badge">{{ t('whyUs.healthBadge') }}</div>
           <h3 class="health-title">{{ t('whyUs.healthTitle') }}</h3>
@@ -55,18 +55,38 @@
           </div>
         </div>
       </div>
+      <!-- CTA Banner -->
+      <div class="cta-banner reveal">
+        <div class="cta-content">
+          <h3 class="cta-title" v-if="lang === 'en'">Ready to Create Your Perfect Flavor?</h3>
+          <h3 class="cta-title" v-else>准备打造您的完美风味？</h3>
+          <p class="cta-desc" v-if="lang === 'en'">Let our expert team develop a custom flavor solution tailored to your product.</p>
+          <p class="cta-desc" v-else>让我们的专业团队为您的产品量身定制香精方案。</p>
+        </div>
+        <a href="#contact" class="btn cta-btn">
+          {{ lang === 'en' ? 'Get in Touch' : '立即咨询' }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C480,0 960,60 1440,20 L1440,60 L0,60Z" fill="#EFEBE6"/>
+      </svg>
     </div>
   </section>
 </template>
 
 <script setup>
 import { useI18n } from '../composables/useI18n'
-const { t } = useI18n()
+const { t, lang } = useI18n()
 </script>
 
 <style scoped>
 .why-us {
   padding: var(--section-padding);
+  padding-bottom: 120px;
   background: linear-gradient(165deg, #F5F0E0 0%, #F8F4EA 40%, #FDFBF5 100%);
   position: relative;
   overflow: hidden;
@@ -240,6 +260,78 @@ const { t } = useI18n()
   line-height: 1.7;
 }
 
+/* CTA Banner */
+.cta-banner {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 48px 56px;
+  background: linear-gradient(135deg, var(--brand-orange), #D4430A);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 12px 48px rgba(232, 148, 26, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.cta-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.cta-btn {
+  position: relative;
+  z-index: 1;
+  background: var(--white) !important;
+  color: var(--brand-orange) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  white-space: nowrap;
+  font-weight: 700;
+  padding: 16px 36px;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
 /* Responsive */
 @media (max-width: 968px) {
   .reasons-grid {
@@ -255,6 +347,12 @@ const { t } = useI18n()
 @media (max-width: 600px) {
   .reasons-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cta-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 36px 28px;
   }
 }
 </style>

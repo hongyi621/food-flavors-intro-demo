@@ -9,13 +9,13 @@
     </div>
 
     <div class="container apps-inner">
-      <div class="applications-header">
+      <div class="applications-header reveal">
         <div class="section-badge apps-badge">{{ t('applications.badge') }}</div>
         <h2 class="section-title apps-title">{{ t('applications.title') }}</h2>
         <p class="section-subtitle apps-sub">{{ t('applications.subtitle') }}</p>
       </div>
 
-      <div class="apps-grid">
+      <div class="apps-grid reveal">
         <div
           v-for="(cat, index) in t('applications.categories')"
           :key="index"
@@ -35,6 +35,12 @@
         </div>
       </div>
     </div>
+
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,25 C240,55 720,0 1200,40 C1360,50 1420,42 1440,38 L1440,60 L0,60Z" fill="#F5F0E0"/>
+      </svg>
+    </div>
   </section>
 </template>
 
@@ -46,6 +52,7 @@ const { t, lang } = useI18n()
 <style scoped>
 .applications {
   padding: var(--section-padding);
+  padding-bottom: 120px;
   background: linear-gradient(170deg, #E8EDDE 0%, #EFF2E6 40%, #F5F7F0 100%);
   position: relative;
   overflow: hidden;
