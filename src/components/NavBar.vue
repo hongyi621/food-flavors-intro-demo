@@ -2,18 +2,7 @@
   <nav :class="['navbar', { scrolled: isScrolled }]">
     <div class="container nav-container">
       <a href="#" class="logo">
-        <span class="logo-emblem">
-          <svg width="32" height="32" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" fill="url(#logoGrad)" />
-            <path d="M50 20 C65 35, 75 50, 50 80 C25 50, 35 35, 50 20Z" fill="rgba(255,255,255,0.9)" />
-            <defs>
-              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#E8941A" />
-                <stop offset="100%" stop-color="#F5B731" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </span>
+        <img src="/logo.svg" alt="Epochal" class="logo-emblem" width="36" height="36" />
         <span class="logo-text">
           <template v-if="lang === 'en'">
             <span class="logo-epochal">EPOCHAL</span>
@@ -103,7 +92,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 
 .logo-emblem {
-  display: flex;
+  display: block;
+  border-radius: 50%;
   filter: drop-shadow(0 2px 4px rgba(232, 148, 26, 0.3));
 }
 

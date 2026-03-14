@@ -74,12 +74,7 @@
             <div class="card-label">{{ lang === 'en' ? 'Tea' : '茶类' }}</div>
           </div>
           <div class="center-circle">
-            <span class="center-icon">
-              <svg width="36" height="36" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.2)" />
-                <path d="M50 20 C65 35, 75 50, 50 80 C25 50, 35 35, 50 20Z" fill="rgba(255,255,255,0.9)" />
-              </svg>
-            </span>
+            <img src="/logo.svg" alt="Epochal" class="center-logo" width="70" height="70" />
             <span class="center-text" v-if="lang === 'en'">EPOCHAL</span>
             <span class="center-text" v-else>珀臣</span>
           </div>
@@ -367,8 +362,9 @@ const { t, lang } = useI18n()
   box-shadow: 0 8px 40px rgba(232, 148, 26, 0.35);
 }
 
-.center-icon {
-  display: flex;
+.center-logo {
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
 }
 
 .center-text {

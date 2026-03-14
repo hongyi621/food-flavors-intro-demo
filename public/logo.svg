@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7C948"/>
+      <stop offset="100%" stop-color="#E8941A"/>
+    </linearGradient>
+    <linearGradient id="yellowBand" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFE066"/>
+      <stop offset="100%" stop-color="#F5C842"/>
+    </linearGradient>
+    <linearGradient id="orangeBand" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#F0A030"/>
+      <stop offset="100%" stop-color="#E88A18"/>
+    </linearGradient>
+    <linearGradient id="redBand" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#E06820"/>
+      <stop offset="100%" stop-color="#CC4418"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="92" fill="url(#bgGrad)"/>
+  <!-- Swirl bands — yellow (top), orange (middle), red (bottom) -->
+  <!-- Yellow top band -->
+  <path d="M110 28 C145 30, 170 55, 168 85 C166 105, 150 118, 130 115 C115 112, 108 98, 115 85 C120 75, 132 72, 140 80"
+        fill="none" stroke="url(#yellowBand)" stroke-width="18" stroke-linecap="round"/>
+  <!-- Orange middle band -->
+  <path d="M95 42 C130 38, 162 62, 158 95 C154 128, 125 148, 95 145 C70 142, 55 122, 60 100 C64 82, 80 72, 98 76"
+        fill="none" stroke="url(#orangeBand)" stroke-width="16" stroke-linecap="round"/>
+  <!-- Red bottom band -->
+  <path d="M80 58 C55 68, 38 95, 42 120 C46 145, 65 162, 90 164 C110 165, 128 155, 138 140"
+        fill="none" stroke="url(#redBand)" stroke-width="14" stroke-linecap="round"/>
+  <!-- Leaf accent at top -->
+  <path d="M118 24 C128 16, 144 18, 146 30 C148 42, 136 48, 126 40 C120 35, 118 28, 118 24Z"
+        fill="#8BC34A" opacity="0.85"/>
+</svg>
